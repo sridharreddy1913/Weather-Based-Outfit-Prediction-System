@@ -14,13 +14,26 @@ models have been provided herein.
 ## Step 1: Download All Files  
 Ensure you have all the required files in your working directory.
 
-## Step 2: Set Up a Virtual Environment (Recommended)  
-Creating a virtual environment helps manage dependencies. You can set it up using the following commands:
+## Step 2-5: Set Up and Run the Application  
+
+Run the following commands step by step in your terminal:
 
 ```bash
+# Step 1: Create and activate a virtual environment
 python -m venv venv
-source venv/bin/activate  # On macOS/Linux
-venv\Scripts\activate  # On Windows
+
+# Activate virtual environment
+source venv/bin/activate  # For macOS/Linux
+# venv\Scripts\activate  # For Windows (Uncomment this if using Windows)
+
+# Step 2: Install dependencies
+pip install -r requirements.txt
+
+# Step 3: Run the encoder models
+python app.py
+
+# Step 4: Start the web application
+python web_app.py
 
 
 
