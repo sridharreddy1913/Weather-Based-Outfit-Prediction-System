@@ -36,6 +36,8 @@ python app.py
 python web_app.py
 
 ```
+# User Interface
+![Screenshot 2025-02-17 at 6 50 54 PM](https://github.com/user-attachments/assets/77c18624-dc68-4e22-8f54-dab817478cd3)
 
 
 
