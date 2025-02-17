@@ -1,0 +1,67 @@
+Weather;Color;Outfit1;Outfit2;Outfit3
+Clear;Yellow;Light T-shirt;Shorts;Sunhat/Sunglasses
+Clear;Yellow;Light T-shirt;Shorts;Sunhat/Sunglasses
+Clear;Yellow;Light T-shirt;Shorts;Sunhat/Sunglasses
+Sunny;Gray;Light T-shirt;Shorts;Sunhat/Sunglasses
+Sunny;Gray;Light T-shirt;Shorts;Sunhat/Sunglasses
+Sunny;Gray;Light T-shirt;Shorts;Sunhat/Sunglasses
+Clouds;Blue;Long-sleeve Shirt;Chinos;Light Jacket
+Clouds;Blue;Long-sleeve Shirt;Chinos;Light Jacket
+Clouds;Blue;Long-sleeve Shirt;Chinos;Light Jacket
+Rain;White;Raincoat;Waterproof Pants;Umbrella/Waterproof Shoes
+Rain;White;Raincoat;Waterproof Pants;Umbrella/Waterproof Shoes
+Rain;White;Raincoat;Waterproof Pants;Umbrella/Waterproof Shoes
+Drizzle;Green;Raincoat;Waterproof Pants;Umbrella/Waterproof Shoes
+Drizzle;Green;Raincoat;Waterproof Pants;Umbrella/Waterproof Shoes
+Drizzle;Green;Raincoat;Waterproof Pants;Umbrella/Waterproof Shoes
+Snow;LightGray;Thermal Sweater;Warm Pants;Winter Jacket/Gloves
+Snow;LightGray;Thermal Sweater;Warm Pants;Winter Jacket/Gloves
+Snow;LightGray;Thermal Sweater;Warm Pants;Winter Jacket/Gloves
+Windy;Gray;Windbreaker;Jeans;Hat/Scarf
+Windy;Gray;Windbreaker;Jeans;Hat/Scarf
+Windy;Gray;Windbreaker;Jeans;Hat/Scarf
+Fog;Brown;Light Jacket;Pants;Scarf
+Fog;Brown;Light Jacket;Pants;Scarf
+Fog;Brown;Light Jacket;Pants;Scarf
+Mist;LightBlue;Light Jacket;Pants;Umbrella
+Mist;LightBlue;Light Jacket;Long Pants;Scarf
+Mist;LightBlue;Light Jacket;Pants;Umbrella
+Haze;DarkGray;Light Jacket;Joggers;Umbrella
+Haze;DarkGray;Light Jacket;Jeans;Comfortable Shoes
+Haze;DarkGray;Light Jacket;Joggers;Umbrella
+Drizzle;DarkGray;Raincoat;Sandals;Rain Hat
+Drizzle;DarkGray;Raincoat;Waterproof Shoes;Umbrella
+Drizzle;DarkGray;Raincoat;Sandals;Rain Hat
+Thunderstorm;Red;Heavy Coat;Rain Pants;Rain Hat
+Thunderstorm;Red;Heavy Coat;Boots;Umbrella
+Thunderstorm;Red;Heavy Coat;Rain Pants;Rain Hat
+Overcast;Orange;Jacket;Pants;Waterproof Shoes
+Overcast;Orange;Jacket;Long Pants;Sneakers
+Overcast;Orange;Jacket;Pants;Waterproof Shoes
+Tornado;Blue;Heavy Clothing;Sturdy Shoes;Safety Vest
+Tornado;Blue;Heavy Clothing;Sturdy Shoes;Protective Gear
+Tornado;Blue;Heavy Clothing;Sturdy Shoes;Safety Vest
+Heatwave;White;Tank Top;Skirt;Visor
+Heatwave;White;Tank Top;Shorts;Sandals
+Heatwave;White;Tank Top;Skirt;Visor
+Cold;Beige;Heavy Coat;Scarf;Scarf
+Cold;Beige;Heavy Coat;Gloves;Hat
+Cold;Beige;Heavy Coat;Scarf;Scarf
+Icy;White;Warm Layers;Insulated Boots;Hat
+Icy;White;Warm Layers;Anti-slip Footwear;Goggles
+Icy;White;Warm Layers;Insulated Boots;Hat
+Dust Storm;DarkBlue;Protective Gear;Pants;Scarf
+Dust Storm;DarkBlue;Protective Gear;Light Clothing;Goggles
+Dust Storm;DarkBlue;Protective Gear;Pants;Scarf
+Blizzard;Blue;Heavy Coat;Parka;Face Mask
+Blizzard;Blue;Heavy Coat;Snow Boots;Scarf
+Blizzard;White;Heavy Coat;Parka;Face Mask
+Tropical Storm;White;Waterproof Gear;Boots;Rain Gear
+Tropical Storm;White;Waterproof Gear;Sturdy Shoes;Umbrella
+Tropical Storm;Beige;Waterproof Gear;Boots;Rain Gear
+Hot;Beige;Tank Top;Skirt;Visor
+Hot;Beige;Tank Top;Shorts;Sandals
+Hot;White;Tank Top;Skirt;Visor
+Smoke;White;Light Jacket;Pants;Scarf
+Smoke;White;Light Jacket;Pants;Scarf
+Smoke;DarkBlue;Light Jacket;Pants;Scarf
