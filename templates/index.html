@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outfit Recommendation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-image: url('https://images.pexels.com/photos/1389460/pexels-photo-1389460.jpeg?auto=compress&cs=tinysrgb&w=800');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.85);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+        }
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        .input-container {
+            margin-bottom: 15px;
+        }
+        input[type="text"] {
+            width: calc(100% - 30px);
+            padding: 10px 15px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 50px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+        input[type="text"]:focus {
+            border-color: #3498db;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 12px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        button:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+        #loading-spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 4px solid rgba(255, 255, 255, 0.6);
+            border-top: 4px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-top: 10px;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            border: 1px solid #3498db;
+            border-radius: 5px;
+            padding: 20px;
+        }
+        .error {
+            color: red;
+        }
+        .info {
+            color: #2c3e50;
+        }
+        #map-container {
+            margin-top: 20px;
+            border: 1px solid #3498db;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        iframe {
+            width: 100%;
+            height: 300px;
+            border: none;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+    <script>
+        function getRecommendation() {
+            const cityInput = document.getElementById('city-input').value.trim();
+            const button = document.getElementById('recommend-button');
+            const spinner = document.getElementById('loading-spinner');
+            const resultDiv = document.getElementById('result');
+            const mapContainer = document.getElementById('map-container');
+
+            button.disabled = true;
+            spinner.style.display = 'block';
+            resultDiv.innerHTML = '<span class="loading">Fetching weather data...</span>';
+            mapContainer.innerHTML = '';
+
+            if (cityInput) {
+                fetchRecommendation({ city: cityInput });
+            } else if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(position => {
+                    const data = {
+                        lat: position.coords.latitude,
+                        lon: position.coords.longitude
+                    };
+                    fetchRecommendation(data);
+                }, showError);
+            } else {
+                alert("Geolocation is not supported by this browser.");
+                button.disabled = false;
+                spinner.style.display = 'none';
+            }
+        }
+
+        function fetchRecommendation(data) {
+            fetch('/recommend', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                const resultDiv = document.getElementById('result');
+                const button = document.getElementById('recommend-button');
+                const spinner = document.getElementById('loading-spinner');
+                const mapContainer = document.getElementById('map-container');
+
+                spinner.style.display = 'none';
+                button.disabled = false;
+
+                if (data.error) {
+                    resultDiv.innerHTML = `<span class="error">${data.error}</span>`;
+                } else {
+                    resultDiv.innerHTML = 
+                        `<span class="info">Location: ${data.location}<br>Weather: ${data.weather}<br>Recommended Outfit: ${data.recommendation.join(', ')}</span>`;
+                    if (data.lat && data.lon) {
+                        mapContainer.innerHTML = `
+                            <iframe src="https://openweathermap.org/weathermap?basemap=map&cities=true&layer=temperature&lat=${data.lat}&lon=${data.lon}&zoom=6" allowfullscreen></iframe>
+                        `;
+                    } else {
+                        mapContainer.innerHTML = '';
+                    }
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('result').innerHTML = '<span class="error">An error occurred. Please try again.</span>';
+                document.getElementById('loading-spinner').style.display = 'none';
+                document.getElementById('recommend-button').disabled = false;
+            });
+        }
+
+        function showError(error) {
+            const button = document.getElementById('recommend-button');
+            const spinner = document.getElementById('loading-spinner');
+            let message;
+
+            switch(error.code) {
+                case error.PERMISSION_DENIED:
+                    message = "User denied the request for Geolocation.";
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    message = "Location information is unavailable.";
+                    break;
+                case error.TIMEOUT:
+                    message = "The request to get user location timed out.";
+                    break;
+                default:
+                    message = "An unknown error occurred.";
+                    break;
+            }
+
+            spinner.style.display = 'none';
+            button.disabled = false;
+            document.getElementById('result').innerHTML = `<span class="error">${message}</span>`;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Outfit Recommendation Based on Weather</h1>
+        <div class="input-container">
+            <input type="text" id="city-input" placeholder="Enter city name (optional)">
+        </div>
+        <button id="recommend-button" onclick="getRecommendation()">Get Outfit Recommendation At Your Location</button>
+        <div id="loading-spinner"></div>
+        <div id="result"></div>
+        <div id="map-container"></div>
+    </div>
+</body>
+</html>
